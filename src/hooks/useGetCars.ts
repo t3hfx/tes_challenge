@@ -15,22 +15,27 @@ export const useGetCars = () => {
     (state: RootState) => state.pullToRefresh,
   );
 
-  const timer = useRef(30000);
+  const timer = useRef<NodeJS.Timer | number>(0);
 
+  //   useEffect(() => {
+  //     timer.current = setInterval(() => {
+  //       refetch();
+  //     }, 5000);
+  //     () => clearInterval(timer.current);
+  //   }, [refetch]);
   useEffect(() => {
     BackgroundTimer.runBackgroundTimer(() => {
-      //   console.log('refetching, ', pullToRefreshTriggered);
-      console.log('refetching');
       refetch();
-    }, timer.current);
+    }, 5000);
 
     () => BackgroundTimer.stopBackgroundTimer();
-  }, [refetch, pullToRefreshTriggered]);
+  }, [refetch, data]);
 
   useEffect(() => {
-    console.log('pullToRefreshTriggered, ', pullToRefreshTriggered);
-    timer.current = pullToRefreshTriggered ? 5000 : 1000;
-  }, [pullToRefreshTriggered]);
+    console.log('background timer');
+    BackgroundTimer.stopBackgroundTimer();
+    refetch();
+  }, [pullToRefreshTriggered, refetch]);
 
   return useMemo(
     () => ({
