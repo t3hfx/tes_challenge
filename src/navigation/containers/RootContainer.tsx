@@ -2,7 +2,8 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 
 import {RootContainerStackParamList, Screens} from '~/navigation/constants';
-import {MoviesList} from '~/screens/MoviesList';
+import {Car} from '~/screens/Car';
+import {CarList} from '~/screens/CarList';
 
 const Stack = createNativeStackNavigator<RootContainerStackParamList>();
 
@@ -13,12 +14,20 @@ export const RootContainer = () => {
         gestureEnabled: true,
         headerShown: true,
       }}
-      initialRouteName={Screens.MoviesList}>
+      initialRouteName={Screens.CarList}>
       <Stack.Screen
-        name={Screens.MoviesList}
-        component={MoviesList}
+        name={Screens.CarList}
+        component={CarList}
         options={{
-          title: Screens.MoviesList,
+          title: Screens.CarList,
+        }}
+      />
+      <Stack.Screen
+        name={Screens.Car}
+        component={Car}
+        options={{
+          presentation: 'formSheet',
+          title: Screens.Car,
         }}
       />
     </Stack.Navigator>

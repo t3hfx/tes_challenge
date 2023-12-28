@@ -1,11 +1,11 @@
 export enum Screens {
-  MoviesList = 'Movies list',
-  Movie = 'Movie',
+  CarList = 'Car list',
+  Car = 'Car',
 }
 
 export type RootContainerStackParamList = {
-  [Screens.MoviesList]: undefined;
-  [Screens.Movie]: MovieParams;
+  [Screens.CarList]: undefined;
+  [Screens.Car]: CarParams;
 };
 
-export type MovieParams = {movieId?: string; title?: string};
+export type CarParams = {carId?: string; title?: string};
