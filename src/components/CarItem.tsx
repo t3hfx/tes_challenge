@@ -1,21 +1,8 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {FC} from 'react';
-import {
-  Image,
-  StyleProp,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  ViewStyle,
-} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
-import {
-  defaultBorderRadius,
-  defaultMargin,
-  theme,
-  windowWidth,
-} from '~/constants/style';
+import {theme, windowWidth} from '~/constants/style';
 import {Screens} from '~/navigation/constants';
 import {RootNavigationProp} from '~/navigation/types';
 import {CarImageAndTitle} from './CarImageAndTitle';
