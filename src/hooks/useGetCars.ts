@@ -15,14 +15,6 @@ export const useGetCars = () => {
     (state: RootState) => state.pullToRefresh,
   );
 
-  const timer = useRef<NodeJS.Timer | number>(0);
-
-  //   useEffect(() => {
-  //     timer.current = setInterval(() => {
-  //       refetch();
-  //     }, 5000);
-  //     () => clearInterval(timer.current);
-  //   }, [refetch]);
   useEffect(() => {
     BackgroundTimer.runBackgroundTimer(() => {
       refetch();
@@ -32,7 +24,6 @@ export const useGetCars = () => {
   }, [refetch, data]);
 
   useEffect(() => {
-    console.log('background timer');
     BackgroundTimer.stopBackgroundTimer();
     refetch();
   }, [pullToRefreshTriggered, refetch]);
