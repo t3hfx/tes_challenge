@@ -8,4 +8,9 @@ export type RootContainerStackParamList = {
   [Screens.Car]: CarParams;
 };
 
-export type CarParams = {carId?: string; title?: string};
+export type CarParams = {
+  title?: string;
+  image?: string;
+  description?: string;
+  rating?: string;
+};

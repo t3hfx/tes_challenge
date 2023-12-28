@@ -17,30 +17,31 @@ import {
   windowWidth,
 } from '~/constants/style';
 import {Screens} from '~/navigation/constants';
-import {RootNavigationProp} from '~/types/navigation';
+import {RootNavigationProp} from '~/navigation/types';
+import {CarImageAndTitle} from './CarImageAndTitle';
 
 type Props = {
-  loading?: boolean;
-  style?: StyleProp<ViewStyle>;
   image?: string;
   title?: string;
   description?: string;
   id?: string;
+  rating?: string;
 };
 
-export const CarItem: FC<Props> = ({image, title, description, id}) => {
+export const CarItem: FC<Props> = ({image, title, description, id, rating}) => {
   const navigation = useNavigation<RootNavigationProp>();
   return (
     <View style={styles.container} testID={'car-item'}>
       <TouchableOpacity
-        onPress={() => navigation.navigate(Screens.Car, {carId: id, title})}
+        onPress={() =>
+          navigation.navigate(Screens.Car, {image, title, description, rating})
+        }
         disabled={!id}>
-        <Image source={{uri: image}} resizeMode="cover" style={styles.image} />
-        <View style={styles.textWrapper}>
-          <Text style={styles.text}>{title}</Text>
-        </View>
+        <CarImageAndTitle image={image} title={title} />
       </TouchableOpacity>
-      <Text>{description?.slice(0, 50) + '...'}</Text>
+      <Text style={styles.description}>
+        {description?.slice(0, 50) + '...'}
+      </Text>
     </View>
   );
 };
@@ -54,7 +55,7 @@ const styles = StyleSheet.create({
   image: {
     height: windowWidth / 2,
     width: windowWidth - theme.margin.defaultMargin * 2,
-    borderRadius: defaultBorderRadius,
+    borderRadius: theme.borderRadius.defaultBorderRadius,
   },
   textWrapper: {
     flexWrap: 'wrap',

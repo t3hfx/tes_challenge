@@ -7,11 +7,7 @@ import {CarItem} from '~/components/CarItem';
 import {useGetCars} from '~/hooks/useGetCars';
 
 export const CarList = () => {
-  const {data, refetch} = useGetCars();
-
-  useEffect(() => {
-    refetch();
-  }, []);
+  const {data} = useGetCars();
 
   const renderItem = ({item}: ListRenderItemInfo<Car>) => {
     return (
@@ -20,6 +16,7 @@ export const CarList = () => {
         image={item.poster}
         description={item.description}
         title={item.name}
+        rating={item.rating}
       />
     );
   };

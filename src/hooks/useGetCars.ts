@@ -7,7 +7,6 @@ export const useGetCars = () => {
     queryKey: ['fetchCars'],
     queryFn: () => fetchCars(),
   });
-  console.log(error);
 
   return useMemo(
     () => ({
